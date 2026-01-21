@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>t4r4ntul4 // Strategic Privacy</title>
+    <title>t4rantul // Strategic Privacy</title>
     <style>
         :root { --neon: #00ff41; --bg: #050505; --red: #ff3e3e; --dim: #003300; --gold: #ffcc00; }
-        * { box-sizing: border-box; cursor: none !important; }
+        
+        /* Cursor logic: only show on desktop */
+        * { box-sizing: border-box; }
+        @media (min-width: 1024px) {
+            * { cursor: none !important; }
+        }
         
         body { 
             background: var(--bg); 
@@ -25,56 +30,56 @@
             z-index: 9999; background-size: 100% 4px, 3px 100%; pointer-events: none;
         }
 
+        /* CUSTOM CURSOR - HIDDEN ON MOBILE */
         #custom-cursor {
             width: 15px; height: 15px; border: 2px solid var(--neon); position: fixed;
             pointer-events: none; z-index: 10000; transform: translate(-50%, -50%);
             box-shadow: 0 0 15px var(--neon); transition: transform 0.04s linear;
+            display: none; 
         }
+        @media (min-width: 1024px) { #custom-cursor { display: block; } }
 
-        #terminal-screen { padding: 50px; height: 100vh; display: flex; flex-direction: column; background: #000; }
-        .line { margin-bottom: 15px; font-size: 1.3rem; font-weight: bold; }
+        #terminal-screen { padding: 40px; height: 100vh; display: flex; flex-direction: column; background: #000; }
+        .line { margin-bottom: 15px; font-size: 1.2rem; font-weight: bold; }
         
         #main-page { 
             display: none; opacity: 0; min-height: 100vh;
             flex-direction: column; align-items: center;
-            padding: 60px 20px; transition: opacity 1.2s ease;
+            padding: 40px 20px; transition: opacity 1.2s ease;
         }
 
         .glitch {
             font-size: clamp(1.8rem, 7vw, 3.5rem); font-weight: 900; color: white;
-            letter-spacing: 10px; text-shadow: 4px 0 var(--red), -4px 0 var(--neon);
+            letter-spacing: 8px; text-shadow: 4px 0 var(--red), -4px 0 var(--neon);
             animation: glitch-anim 3s infinite linear alternate-reverse;
-            margin-bottom: 50px; text-transform: uppercase; text-align: center;
+            margin-bottom: 40px; text-transform: uppercase; text-align: center;
         }
 
         .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
-            max-width: 1200px; width: 100%; margin-bottom: 50px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
+            max-width: 1200px; width: 100%; margin-bottom: 40px;
         }
 
         .panel {
             background: rgba(0, 15, 0, 0.8); border: 1px solid var(--dim);
-            padding: 40px; text-align: left; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            padding: 35px; text-align: left;
         }
 
         .breach-panel { border-left: 6px solid var(--red); }
         .trust-panel { border-left: 6px solid var(--gold); }
 
-        h3 { font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 25px; text-transform: uppercase; color: white; }
-        
-        .item-title { display: block; color: var(--neon); font-weight: 900; font-size: 1rem; margin-bottom: 10px; }
-        .item-desc { color: #ccc; font-size: 1rem; line-height: 1.6; margin: 0; margin-bottom: 25px; }
+        h3 { font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: white; }
+        .item-title { display: block; color: var(--neon); font-weight: 900; font-size: 1rem; margin-bottom: 8px; }
+        .item-desc { color: #ccc; font-size: 1rem; line-height: 1.6; margin: 0; margin-bottom: 20px; }
 
-        /* THE FIX: HIGH VISIBILITY TELEGRAM BUTTON */
-        .tg-wrapper { width: 100%; text-align: center; padding-bottom: 100px; }
+        .tg-wrapper { width: 100%; text-align: center; padding: 40px 0 100px 0; }
         .secure-btn {
             background: transparent; border: 3px solid var(--neon); color: var(--neon);
-            padding: 30px 50px; font-size: 1.4rem; font-family: inherit;
-            text-decoration: none; display: inline-block; letter-spacing: 4px;
+            padding: 25px 40px; font-size: 1.2rem; font-family: inherit;
+            text-decoration: none; display: inline-block; letter-spacing: 3px;
             font-weight: 900; text-transform: uppercase; transition: 0.3s;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
         }
-        .secure-btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 80px var(--neon); transform: scale(1.05); }
+        .secure-btn:hover { background: var(--neon); color: #000; box-shadow: 0 0 50px var(--neon); }
 
         @keyframes glitch-anim { 0%, 100% { transform: translate(0); } 1% { transform: translate(4px, -4px); } 2% { transform: translate(0); } }
         @keyframes blink { 50% { opacity: 0; } }
@@ -96,19 +101,17 @@
             <div class="panel breach-panel">
                 <h3 style="color: var(--red);">Vulnerability Logs_</h3>
                 <span class="item-title">> $240M MALONE EXFILTRATION:</span>
-                <p class="item-desc">Institutional-grade theft proving that deterministic trails are a permanent liability. When volume moves, the ledger is your enemy.</p>
-                
+                <p class="item-desc">High-level Bitcoin theft proving that even secure teams are a vector. Without entropy, the ledger is a permanent hunting ground.</p>
                 <span class="item-title">> HEURISTIC CLUSTERING:</span>
-                <p class="item-desc">Forensic AI maps "private" storage by clustering transaction metadata. Patterned behavior = zero privacy.</p>
+                <p class="item-desc">Forensic AI maps "private" storage by clustering transaction metadata. If you don't break the math, you aren't private.</p>
             </div>
 
             <div class="panel trust-panel">
                 <h3 style="color: var(--gold);">The Trust Protocol_</h3>
                 <span class="item-title">> ALIGNED INCENTIVES:</span>
-                <p class="item-desc">Logic dictates that a 15% recurring architecture fee is superior to a single-burn theft. My survival depends on your security.</p>
-                
+                <p class="item-desc">A 15% recurring fee is superior to a single-burn theft. Game theory ensures my business survives only if you remain secure.</p>
                 <span class="item-title">> MANUAL ENTROPY:</span>
-                <p class="item-desc">Every delivery path is manually engineered. If a computer didn't build it, a computer cannot follow it.</p>
+                <p class="item-desc">Every delivery path is manually engineered. If a computer didn't build the trail, a computer cannot follow it.</p>
             </div>
         </div>
 
@@ -127,9 +130,9 @@
         const log = document.getElementById('log');
         const manual = document.getElementById('manual-typing');
         const systemMessages = [
-            "SYS_BOOT: t4r4ntul4_v13.0",
-            "SCANNING: Ledger_Leak_Analysis",
-            "ALERT: Deterministic_Links_Found",
+            "SYS_BOOT: t4rantul_v14.0",
+            "SCANNING: Ledger_Leak_History",
+            "ALERT: Deterministic_Link_Detected",
             "ACTION: Engaging_Manual_Sunder",
             "---------------------------------------"
         ];
@@ -148,7 +151,7 @@
             }
         }
 
-        const commandText = "sunder --bypass-forensics --telegram-only";
+        const commandText = "sunder --bypass-forensics --telegram-exclusive";
         let charIdx = 0;
         function typeCommand() {
             if (charIdx < commandText.length) {
@@ -164,7 +167,6 @@
                 }, 800);
             }
         }
-
         window.onload = () => setTimeout(typeLogs, 400);
     </script>
 </body>
