@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>t4r4ntul4 // Terminal</title>
+    <style>
+        body { background: #050505; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; overflow: hidden; }
+        #terminal { max-width: 800px; margin: auto; height: 90vh; overflow-y: auto; scroll-behavior: smooth; }
+        .line { margin-bottom: 5px; opacity: 0.9; }
+        .cursor { display: inline-block; width: 10px; height: 18px; background: #00ff41; animation: blink 1s infinite; vertical-align: middle; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        /* Hide scrollbar but keep functionality */
+        #terminal::-webkit-scrollbar { width: 0px; }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <div id="log"></div>
+        <span class="cursor"></span>
+    </div>
+
+    <script>
+        const logContainer = document.getElementById('log');
+        const terminal = document.getElementById('terminal');
+
+        const messages = [
+            "[ SYSTEM ] Initializing t4r4ntul4 core...",
+            "[ AUTH ] Connection established to Swiss_Node_04",
+            "[ INFO ] Scanning blockchain for unspent outputs...",
+            "[ INFO ] Found 0.05 Sepolia ETH... isolating.",
+            "[ ACTION ] Initiating Manual_Chaos_Loop...",
+            "[ OK ] Shuffling transaction timing...",
+            "[ OK ] Stealth Address generated: 0x71...f3a9",
+            "[ STATUS ] Tunneling in progress...",
+            "[ SUCCESS ] Trace severed. Client identity: GHOST.",
+            "-----------------------------------------------",
+            "> WAITING FOR NEW COMMAND_"
+        ];
+
+        let i = 0;
+
+        function typeLog() {
+            if (i < messages.length) {
+                const line = document.createElement('p');
+                line.className = 'line';
+                line.textContent = '> ' + messages[i];
+                logContainer.appendChild(line);
+                
+                // Auto-scroll to bottom
+                terminal.scrollTop = terminal.scrollHeight;
+                
+                i++;
+                // Random delay between lines to look "human"
+                setTimeout(typeLog, Math.random() * 800 + 400);
+            }
+        }
+
+        // Start the sequence
+        setTimeout(typeLog, 1000);
+    </script>
+</body>
+</html>
